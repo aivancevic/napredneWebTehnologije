@@ -3,10 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 
 const Books = ({books}) => {
-//   const sortedBooks = [...books].sort((a, b) =>
-//     a.manufacturer.localeCompare(b.manufacturer)
-//   );
-
   return (
     <div className="container mt-5">
     <h1 className="text-center">Welcome to the Book Store!</h1>
