@@ -22,6 +22,10 @@ const bookSchema = new mongoose.Schema({
         required: true,
         default: 0,
     },
+    publisher:{
+        type: String,
+        required: true,
+    },
 });
 
 const Book = mongoose.model("Book", bookSchema);

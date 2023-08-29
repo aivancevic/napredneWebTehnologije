@@ -2,19 +2,17 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 
-const Books = ({books}) => {
+const Publisher = ({publishers}) => {
   return (
     <div className="container mt-5">
-    <h1 className="text-center">Welcome to the Book Store!</h1>
+    <h1 className="text-center">Welcome to the publisher list page</h1>
     <div className="row mt-4">
-      {books.map((book, index) => (
+      {publishers.map((publisher, index) => (
         <div key={index} className="col-md-4 mb-4">
           <div className="card">
-            <img src={book.image} alt={book.name} className="card-img-top" />
             <div className="card-body">
-              <h5 className="card-title">{book.name}</h5>
-              <p className="card-text">{book.author}</p>
-              <Link to={`/book/${book._id}`} className="btn btn-primary">
+              <h5 className="card-title">{publisher.name}</h5>
+              <Link to={`/publisher/${publisher._id}`} className="btn btn-primary">
                 <span>Detalji</span>
               </Link>
             </div>
@@ -26,4 +24,4 @@ const Books = ({books}) => {
   );
 };
 
-export default Books;
+export default Publisher;

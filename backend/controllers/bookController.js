@@ -16,7 +16,7 @@ const getBookById = asyncHandler (async(req, res) => {
 });
 
 const updateBookById = asyncHandler(async (req, res) => {
-    const { name, image, description, author, price } = req.body;
+    const { name, image, description, author, price, publisher } = req.body;
 
     const book = await Book.findById(req.params.id);
   
@@ -26,6 +26,7 @@ const updateBookById = asyncHandler(async (req, res) => {
       book.description = description;
       book.author = author;
       book.price = price;
+      book.publisher = publisher;
   
       const updatedBook= await book.save();
       res.status(201).json(updatedBook);

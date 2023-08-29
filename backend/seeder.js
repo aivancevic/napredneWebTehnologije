@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import users from "./data/users.js";
 import books from "./data/books.js";
+import publishers from './data/publishers.js';
 import User from "./models/userModel.js";
 import Book from './models/bookModel.js';
 import Publisher from './models/publisherModel.js';
@@ -15,13 +16,9 @@ const importData = async () => {
         await User.deleteMany();
 
         const createdUsers = await User.insertMany(users);
+        const createdBooks = await Book.insertMany(books);
+        const createdPublishers = await Publisher.insertMany(publishers);
         const adminUser = createdUsers[0].id;
-
-        const sampleBooks = books.map((book) => {
-            return { ...book, user: adminUser };
-          });
-
-        await Book.insertMany(sampleBooks);
 
         console.log("Data imported");
         process.exit();

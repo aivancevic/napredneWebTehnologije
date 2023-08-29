@@ -9,14 +9,18 @@ const publisherSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    contactEmail: {
+    contact: {
+      type: String,
+      required: true,
+    },
+    email: {
       type: String,
       required: true,
     },
     phoneNumber: {
       type: String,
       required: true,
-    },
+    }
   });
   
 const Publisher = mongoose.model("Publisher", publisherSchema);
