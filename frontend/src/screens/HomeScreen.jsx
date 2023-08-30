@@ -10,7 +10,6 @@ const HomeScreen = () => {
       axios.get('/api/books')
         .then(response => {
           setBooks(response.data);
-          console.log(booksData)
         })
         .catch(error => {
           console.error('Error fetching books:', error);

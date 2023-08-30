@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -13,7 +13,8 @@ const Navbar = () => {
             <div class="navbar-nav">
                 <Link to={`/`} class="nav-link active" aria-current="page">Books</Link>
                 <Link to={`/publisher`} class="nav-link active" aria-current="page">Publishers</Link>
-                <Link to={`/`} class="nav-link active" aria-current="page">Login</Link>
+                <Link to={`/login`} class="nav-link active" aria-current="page">Login</Link>
+                <Link to={`/register`} class="nav-link active" aria-current="page">Register</Link>
             </div>
             </div>
         </div>
@@ -21,4 +22,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Navbar;
