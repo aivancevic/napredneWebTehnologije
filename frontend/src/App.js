@@ -10,6 +10,8 @@ import Navbar from './components/Navbar.js';
 import RegisterScreen from './screens/RegisterScreen.jsx';
 import BookEditScreen from './screens/BookEditScreen.jsx'
 import PublisherEditScreen from './screens/PublisherEditScreen.jsx';
+import PublisherAddScreen from './screens/PublisherAddScreen.jsx'
+import BookAddScreen from './screens/BookAddScreen.jsx';
 
 const App = () => {
   return (
@@ -24,6 +26,8 @@ const App = () => {
         <Route path="/register" exact component={RegisterScreen} /> 
         <Route path="/bookedit/:id" exact component={BookEditScreen} /> 
         <Route path="/publisheredit/:id" exact component={PublisherEditScreen} /> 
+        <Route path="/create" exact component={PublisherAddScreen} /> 
+        <Route path="/books/create" exact component={BookAddScreen} /> 
       </Switch>
     </Router>
   );

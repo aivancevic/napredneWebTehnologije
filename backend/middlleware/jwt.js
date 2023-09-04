@@ -1,4 +1,4 @@
-// const jwt = require('jsonwebtoken');
+
 import jwt from 'jsonwebtoken';
 const SECRET = "ovojenajvecatajna"
 
@@ -22,4 +22,4 @@ export default function signJwt(user_id) {
 //     })
 // }
 
-// module.exports = {signJwt, verifyJwt};
+// // module.exports = {signJwt, verifyJwt};

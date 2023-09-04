@@ -69,7 +69,7 @@ const BookEditScreen = ({match}) => {
                   <label htmlFor="publisher" className="form-label">Publisher</label>
                   <input type="publisher" className="form-control" id="publisher" value={publisher} onChange={(e) => setPublisher(e.target.value)} />
                 </div>
-                <button type="submit" className="btn btn-primary">Save changes</button>
+                <button type="submit" className="btn btn-primary">Spremi promjene</button>
               </form>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import asyncHandler from "../middlleware/asyncHandler.js";
 import Book from "../models/bookModel.js";
+import verifyJwt from "../middlleware/verifyJwt.js";
 
 const getBooks = asyncHandler (async(req, res) => {
     const books = await Book.find({}).sort({publisher:1});
@@ -15,7 +16,7 @@ const getBookById = asyncHandler (async(req, res) => {
     res.status(404).json({message: "Book not found"});
 });
 
-const updateBookById = asyncHandler(async (req, res) => {
+const updateBookById = asyncHandler(verifyJwt, async (req, res) => {
     const { name, image, description, author, price, publisher } = req.body;
 
     const book = await Book.findById(req.params.id);
@@ -50,7 +51,7 @@ const updateBookById = asyncHandler(async (req, res) => {
   });
 
   const createBook = asyncHandler(async (req, res) => {
-    const { name, image, description, author, price } = req.body;
+    const { name, image, description, author, price, publisher} = req.body;
 
     const bookExist = await Book.findOne({ name });
   
@@ -65,6 +66,7 @@ const updateBookById = asyncHandler(async (req, res) => {
       description,
       author,
       price,
+      publisher,
     });
   
     if (book) {
@@ -75,6 +77,7 @@ const updateBookById = asyncHandler(async (req, res) => {
         description: book.description,
         author: book.author,
         price: book.price,
+        publisher: book.publisher,
       });
     } else {
         res.status(400).json({message: "Invalid book input"});
