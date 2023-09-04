@@ -12,7 +12,10 @@ const Login = () => {
 
     try {
       const response = await axios.post('/api/user/login', { email, password });
-      console.log('Login successful:', response.data);
+      localStorage.setItem("token", response.data.accessToken);
+      localStorage.setItem("role", response.data.payload.role);
+      // console.log('Login successful:', response.data.payload);
+      window.location.replace('/')
       // Handle successful login, such as setting authentication token
     } catch (error) {
       console.error('Login error:', error);

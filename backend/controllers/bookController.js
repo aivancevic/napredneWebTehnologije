@@ -2,7 +2,7 @@ import asyncHandler from "../middlleware/asyncHandler.js";
 import Book from "../models/bookModel.js";
 
 const getBooks = asyncHandler (async(req, res) => {
-    const books = await Book.find({});
+    const books = await Book.find({}).sort({publisher:1});
     res.json(books);
 });
 

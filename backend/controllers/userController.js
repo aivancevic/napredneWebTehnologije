@@ -1,5 +1,8 @@
 import asyncHandler from "../middlleware/asyncHandler.js";
-import User from "../models/userModel.js"; // Pretpostavljamo da postoji userModel
+import User from "../models/userModel.js";
+import bcrypt from 'bcryptjs';
+import signJwt from '../middlleware/jwt.js'
+
 
 const getUsers = asyncHandler(async (req, res) => {
   const users = await User.find({});
@@ -43,12 +46,55 @@ const deleteUserById = asyncHandler(async (req, res) => {
   }
 });
 
+//REGISTER
 const createUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
+  const hashedPassword = bcrypt.hashSync(password, 10);
 
-  const newUser = await User.create({ username, email, password });
+  const newUser = await User.create({ username, email, password: hashedPassword});
 
   res.status(201).json(newUser);
+  res.send('register user');
 });
 
-export { getUsers, getUserById, updateUserById, deleteUserById, createUser };
+//POST, LOGIN
+const loginUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+
+  if (user && (await user.matchPassword(password))) {
+    // User authentication successful
+
+    // Generate a token with user data
+    const payload = {
+      _id: user._id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+    };
+
+    var accessToken = signJwt(payload);
+
+    // Include the access token in the response
+    if (accessToken) {
+      res.json({accessToken, payload});
+    }
+    else {
+        console.log("Authentication error");
+    }
+    // res.json({ accessToken })
+  } else {
+    // Authentication failed
+    res.status(401).json({ message: "Invalid credentials" });
+  }
+});
+
+
+//POST, LOGOUT
+const logoutUser = asyncHandler (async (req,res) => {
+  res.send('logout user');
+});
+
+
+
+export { getUsers, getUserById, updateUserById, deleteUserById, createUser, loginUser, logoutUser };

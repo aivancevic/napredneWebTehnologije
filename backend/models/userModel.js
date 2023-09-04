@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -20,7 +21,12 @@ const userSchema = new mongoose.Schema({
     enum: ['user', 'admin'], // Postojece uloge
     default: 'user', // Zadana uloga je 'user'
   },
+  
 });
+
+userSchema.methods.matchPassword = async function (enteredPassword){
+  return await bcrypt.compare(enteredPassword, this.password);
+}
 
 const User = mongoose.model('User', userSchema);
 
